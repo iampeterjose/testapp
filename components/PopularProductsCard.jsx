@@ -11,11 +11,11 @@ const PopularProductsCard = ({ title, image, description, id, price }) => {
         <img 
             src={image} 
             alt={title} 
-            className="w-[180px] h-[180px] rounded-lg"
+            className="w-[80px] h-[80px] md:w-[180px] md:h-[180px] rounded-lg"
         />
-        <div className="w-80 px-6">
-            <h3 className="mt-2 text-xl leading-normal font-semibold font-palanquin">{title}</h3>
-            <p className="mt-2 font-semibold font-montserrat text-orange-700 text-lg leading-normal">${price}</p>
+        <div className="">
+            <h3 className="mt-2 text-sm md:text-xl leading-normal font-semibold font-palanquin">{title}</h3>
+            <p className="mt-2 font-semibold font-montserrat text-orange-700 text-sm md:text-lg leading-normal">${price}</p>
         </div>
     </div>
     <Modal

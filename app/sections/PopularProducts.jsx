@@ -42,7 +42,7 @@ const PopularProducts = () => {
       <div className="flex flex-col justify-start gap-5">
         <h2 className="text-2xl font-palanquin font-bold">Best Seller</h2>
       </div>
-      <div className="mt-8 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:gap-4 gap-14">
+      <div className="mt-8 grid lg:grid-cols-4 grid-cols-2 sm:gap-4 gap-10">
         {limitedCoffeeData.map((coffee) => (
           <PopularProductsCard 
             key={coffee.id} 
