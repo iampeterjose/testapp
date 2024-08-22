@@ -10,7 +10,7 @@ const ContactUs = () => {
                 alt={icon.alt}
                 width={24}
                 height={24}
-                className="transition-transform duration-500 transform hover:rotate-[360deg]"
+                className="duration-500 hover:rotate-[360deg]"
             />
             </div>
         ))}

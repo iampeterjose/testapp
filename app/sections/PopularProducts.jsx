@@ -38,16 +38,17 @@ const PopularProducts = () => {
   }
 
   return (
-    <section id='products' className='max-w-[1440px] mx-0 my-auto max-sm:mt-5'>
+    <section id='products' className='max-sm:mt-5 p-5 md:p-20'>
       <div className="flex flex-col justify-start gap-5">
-        <h2 className="text-2xl font-palanquin font-bold">Best Selling</h2>
+        <h2 className="text-2xl font-palanquin font-bold">Best Seller</h2>
       </div>
-      <div className="mt-20 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:gap-4 gap-14">
+      <div className="mt-8 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:gap-4 gap-14">
         {limitedCoffeeData.map((coffee) => (
           <PopularProductsCard 
             key={coffee.id} 
             title={coffee.title}
             image={coffee.image}
+            description={coffee.description}
             price={2.99}
           />
         ))}

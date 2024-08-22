@@ -3,7 +3,7 @@ import ContactUs from "./ContactUs";
 
 const Footer = () => {
   return (
-    <footer id='contact-us' className="max-w-[1440px] mx-0 my-auto">
+    <footer id='contact-us' className="bg-gradient-to-r from-coffee to-coffee-1 text-slate-900 p-5 md:p-20">
       <div className="flex justify-between items-start gap-20 flex-wrap mx-lg:flex-col border-b-2 pb-20">
         <div className="flex flex-col items-start">
           <a href="/"

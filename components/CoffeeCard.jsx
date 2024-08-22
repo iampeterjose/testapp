@@ -2,7 +2,7 @@
 import Modal from "./Modal";
 import { useState } from "react";
 
-const CoffeeCard = ({title, image, description, id}) => {
+const CoffeeCard = ({ title, image, description, id, price }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => setIsModalOpen(true);
@@ -21,7 +21,7 @@ const CoffeeCard = ({title, image, description, id}) => {
             />
             <div className="w-80 px-6">
                 <h3 className="mt-2 text-xl leading-normal font-semibold font-palanquin">{title}</h3>
-                <p className="mt-2 font-semibold font-montserrat text-orange-700 text-lg leading-normal">$2.99</p>
+                <p className="mt-2 font-semibold font-montserrat text-orange-700 text-lg leading-normal">${price}</p>
             </div>
         </div>
         <Modal
@@ -31,7 +31,7 @@ const CoffeeCard = ({title, image, description, id}) => {
             image={image}
             description={description}
             id={id}
-            price={2.99}
+            price={price}
         />
         </>
     )

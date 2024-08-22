@@ -7,7 +7,7 @@ export const navLinks = [
 
 export const socialMedia = [
     { src: "/assets/icons/facebook.svg", alt: "facebook logo" },
-    { src: "/assets/icons/twitter.svg", alt: "twitter logo" },
+    { src: "/assets/icons/twitterx.svg", alt: "twitter logo" },
     { src: "/assets/icons/instagram.svg", alt: "instagram logo" },
 ];
 

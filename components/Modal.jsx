@@ -1,19 +1,21 @@
 "use client";
 import { useState } from "react";
+import { useCart } from "@/app/context/CartContext";
 
 const Modal = ({ isOpen, onClose, title, image, description, id, price }) => {
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(1);
+    const { addItem } = useCart();
 
-    function handleAdd(){
-        let total = (Number(price) * Number(quantity)).toFixed(2);
-        confirm(`Your order is ${quantity} ${title}. A total of $${total}`);
-    }
+    const handleAdd = () => {
+        addItem({ id, title, price, quantity: parseInt(quantity, 10), image });
+        onClose();
+    };
     
     if(!isOpen) return null;
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="relative bg-white p-6 rounded-lg shadow-lg w-4/5 lg:w-2/5 h-150">
+            <div className="relative bg-white p-6 rounded-md shadow-lg w-4/5 lg:w-2/5 h-150">
                 {/* Close button */}
                 <button
                 onClick={onClose}
