@@ -66,8 +66,8 @@ const Cart = () => {
                     />
                   </div>
                   <div>
-                    <h3 className="mt-2 text-md leading-normal">{item.title}</h3>
-                    <p className="text-sm leading-normal">${(item.price * item.quantity).toFixed(2)}</p>
+                    <h3 className="text-right mt-2 text-md leading-normal">{item.title}</h3>
+                    <p className="text-right text-sm leading-normal">${(item.price * item.quantity).toFixed(2)}</p>
                   </div>
                 </li>
               ))}
