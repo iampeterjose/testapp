@@ -27,7 +27,7 @@ const PopularProducts = () => {
     fetchCoffeeData();
   },[]);
 
-  const limitedCoffeeData = coffeeData.slice(0,4);
+  const limitedCoffeeData = coffeeData.slice(0,3);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -42,7 +42,7 @@ const PopularProducts = () => {
       <div className="flex flex-col justify-start gap-5">
         <h2 className="text-2xl font-palanquin font-bold">Best Seller</h2>
       </div>
-      <div className="mt-8 grid lg:grid-cols-4 grid-cols-2 sm:gap-4 gap-10">
+      <div className="mt-8 grid lg:grid-cols-3 grid-cols-3 gap-10">
         {limitedCoffeeData.map((coffee) => (
           <PopularProductsCard 
             key={coffee.id} 
