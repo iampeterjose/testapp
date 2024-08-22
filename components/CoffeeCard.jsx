@@ -10,18 +10,38 @@ const CoffeeCard = ({ title, image, description, id, price }) => {
 
     return (
         <>
+        {/* Desktop screen */}
         <div 
-            className="flex flex-1 justify-center items-center flex-col w-full mb-6 max-sm:w-full hover:cursor-pointer group hover:shadow-xl transition-shadow hover:bg-slate-100 duration-500"
+            className="hidden md:flex  justify-center items-center flex-col w-full mb-6 max-sm:w-full hover:cursor-pointer group hover:shadow-xl transition-shadow hover:bg-slate-100 duration-500"
             onClick={openModal}
         >
-            <img 
-                src={image} 
-                alt={title} 
-                className="w-[280px] h-[280px] rounded-lg"
-            />
+            <div className="flex-shrink-0 md:mr-6">
+                <img 
+                    src={image} 
+                    alt={title} 
+                    className="w-[280px] h-[280px] rounded-lg"
+                />
+            </div>
             <div className="w-80 px-6">
                 <h3 className="mt-2 text-xl leading-normal font-semibold font-palanquin">{title}</h3>
                 <p className="mt-2 font-semibold font-montserrat text-orange-700 text-lg leading-normal">${price}</p>
+            </div>
+        </div>
+
+        {/* Mobile screen */}
+        <div className="flex md:hidden flex-col border-b-2 hover:cursor-pointer group hover:shadow-xl transition-shadow hover:bg-slate-100 duration-500" onClick={openModal}>
+            <div className="flex justify-between items-center p-2">
+                <div>
+                    <h3 className="mt-2 text-xl leading-normal font-semibold font-palanquin">{title}</h3>
+                    <p className="mt-2 font-semibold font-montserrat text-orange-700 text-lg leading-normal">${price}</p>
+                </div>
+                <div>
+                    <img 
+                        src={image} 
+                        alt={title} 
+                        className="w-[80px] h-[80px] rounded-lg"
+                    />
+                </div>
             </div>
         </div>
         <Modal

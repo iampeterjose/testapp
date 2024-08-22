@@ -62,7 +62,7 @@ const Products = () => {
             />
         </div>
       </div>
-      <div className="mt-20 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:gap-4 gap-14">
+      <div className="my-10 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-4 md:gap-14">
         {filteredCoffeeData.map((coffee) => (
           <CoffeeCard 
             key={coffee.id} 

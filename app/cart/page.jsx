@@ -28,13 +28,13 @@ const Cart = () => {
     <div className='flex flex-col min-h-screen'>
       <main className='flex-grow'>
         <div className='flex flex-col md:flex-row p-5 md:p-20 mt-32 md:mt-20 '>
-        <div className='w-full' >
+        <div className='w-full'>
           <h1 className='text-2xl'>Cart</h1>
           {cartItems.length > 0 ? (
-            <ul>
+            <ul className='flex flex-col'>
               {cartItems.map((item) => (
-                <li key={item.id} className='my-4 border-b-2 border-b-slate-200'>
-                  <div className='flex flex-row'>
+                <li key={item.id} className='my-4 border-b-2 border-b-slate-200 flex justify-between items-center p-2'>
+                  <div className='flex'>
                     <input type="number" 
                       value={item.quantity}
                       className='w-12 h-8 border-2 text-base border-gray-400 rounded-md my-8 mr-2 pl-2'
@@ -47,8 +47,10 @@ const Cart = () => {
                       className="w-[100px] h-[100px] rounded-lg"
                     />
                   </div>
-                  <h3 className="mt-2 text-md leading-normal">{item.title}</h3>
-                  <p className="text-sm leading-normal">${(item.price * item.quantity).toFixed(2)}</p>
+                  <div>
+                    <h3 className="mt-2 text-md leading-normal">{item.title}</h3>
+                    <p className="text-sm leading-normal">${(item.price * item.quantity).toFixed(2)}</p>
+                  </div>
                 </li>
               ))}
             </ul>
