@@ -37,7 +37,7 @@ const Cart = () => {
                   <div className='flex'>
                     <input type="number" 
                       value={item.quantity}
-                      className='w-12 h-8 border-2 text-base border-gray-400 rounded-md my-8 mr-2 pl-2'
+                      className='w-12 h-10 border-2 text-base border-gray-400 rounded-md my-8 mr-2 pl-2'
                       onChange={(e) => handleQuantityChange(item.id, e)}
                     />
                     
@@ -107,7 +107,14 @@ const Cart = () => {
                   </tr>
                 </tbody>
               </table>
+
+              <button 
+                className="px-6 py-2 mt-10 bg-blue-500 text-white rounded-full hover:bg-blue-600 w-full"
+                onClick={(e) => window.confirm(`Not Yet Available`)}
+              >Proceed to Payment
+              </button>
           </div>
+          
         }
         </div>
       </main>

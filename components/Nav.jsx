@@ -30,9 +30,11 @@ const Nav = () => {
                             <a href={link.href} className="text-gray-800 duration-200 hover:text-coffee">{link.label}</a>
                         </li>
                     ))}
-                    <button className="bg-orange-600 text-white h-10 w-24 rounded-full md:ml-8 text-lg md:my-0 my-5">
-                        Sign In
-                    </button>
+                    <a href="/signIn">
+                        <button className="bg-orange-600 text-white h-10 w-24 rounded-full md:ml-8 text-lg md:my-0 my-5">
+                            Sign In
+                        </button>
+                    </a>
                 </ul>
             </div>
             <div className="bg-slate-50 py-2 px-12 flex justify-end items-end">
