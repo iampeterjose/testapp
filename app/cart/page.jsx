@@ -37,7 +37,7 @@ const Cart = () => {
                   <div className='flex flex-row'>
                     <input type="number" 
                       value={item.quantity}
-                      className='w-12 h-8 border-2 border-gray-400 rounded-md my-8 mr-2 pl-2'
+                      className='w-12 h-8 border-2 text-base border-gray-400 rounded-md my-8 mr-2 pl-2'
                       onChange={(e) => handleQuantityChange(item.id, e)}
                     />
                     
