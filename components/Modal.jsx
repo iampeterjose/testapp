@@ -33,7 +33,7 @@ const Modal = ({ isOpen, onClose, title, image, description, id, price }) => {
                                 type="number"
                                 value={quantity}
                                 onChange={(e) => setQuantity(e.target.value)}
-                                className="h-10 w-full md:w-[50px] pl-2 ml-2 py-1 border-2 text-base border-gray-700 rounded-md"
+                                className="h-14 w-full md:w-[80px] px-3 py-2 sm:text-base pl-2 ml-2 border-2 text-base border-gray-700 rounded-md"
                             />
                         </label>
                         <button 
