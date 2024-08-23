@@ -7,15 +7,13 @@ const NavBottom = () => {
 
     return (
         <div>
-        {isUserLoggedIn() &&
+        {isUserLoggedIn() && getTotalQuantity() &&
         <div className="hidden md:block fixed bottom-5 right-5 z-50 w-80 h-22 p-2 bg-orange-600 rounded-lg text-slate-50 shadow-xl shadow-orange-700">
             <p>Hey, Good day!</p>
             <p>Items on cart: {getTotalQuantity()}</p>
-            {getTotalQuantity() > 0 && 
-                <Link href='/cart'>
-                    <p className="text-sm">Check my cart</p>
-                </Link>
-            }
+            <Link href='/cart'>
+                <p className="text-sm">Check my cart</p>
+            </Link>
         </div>
         }
         {isUserLoggedIn() && 
