@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useCart } from "@/app/context/CartContext";
+import { useCart } from "../app/context/CartContext";
 
 const Modal = ({ isOpen, onClose, title, image, description, id, price }) => {
     const [quantity, setQuantity] = useState(1);

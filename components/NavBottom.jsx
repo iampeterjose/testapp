@@ -7,7 +7,19 @@ const NavBottom = () => {
 
     return (
         <div>
+        {isUserLoggedIn() &&
+        <div className="hidden md:block fixed bottom-5 right-5 z-50 w-80 h-22 p-2 bg-orange-600 rounded-lg text-slate-50 shadow-xl shadow-orange-700">
+            <p>Hey, Good day!</p>
+            <p>Items on cart: {getTotalQuantity()}</p>
+            {getTotalQuantity() > 0 && 
+                <Link href='/cart'>
+                    <p className="text-sm">Check my cart</p>
+                </Link>
+            }
+        </div>
+        }
         {isUserLoggedIn() && 
+        // Mobile screen
         <div className="md:hidden fixed bottom-0 left-0 z-50 w-full h-16 b-slate-50 border-t-2 border-gray-200 bg-slate-50 shadow-inner">
             <div className="grid h-full max-w-full grid-cols-3 mx-auto">
                 <Link href='/' className="inline-flex flex-col items-center justify-center px-2 border-gray-200 border-x hover:bg-gray-200">
