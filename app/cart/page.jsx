@@ -85,7 +85,7 @@ const Cart = () => {
           }
         </div>
         {cartItems.length > 0 && 
-          <div className='w-full mt-4 p-0 md:p-20'>
+          <div className='w-full mt-10 md:p-20'>
             <h2 className='text-lg'>Order Summary</h2>
               <table className='table-auto w-full mt-4'>
                 <thead className='text-left text-md'>
@@ -96,7 +96,7 @@ const Cart = () => {
                     <th>Amount</th>
                   </tr>
                 </thead>
-                <tbody className='text-sm'>
+                <tbody className='text-md'>
                   {cartItems.map((cart) => (
                     <tr key={cart.id}>
                       <td>{cart.title}</td>
@@ -117,7 +117,7 @@ const Cart = () => {
                     <td></td>
                     <td>${vat.toFixed(2)}</td>
                   </tr>
-                  <tr>
+                  <tr className='font-bold border-double border-t-8'>
                     <td>Total Amount</td>
                     <td></td>
                     <td></td>
