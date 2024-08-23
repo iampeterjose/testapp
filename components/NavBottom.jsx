@@ -1,7 +1,7 @@
 "use client";
 import { useCart } from "../app/context/CartContext";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProfileNav from "./ProfileNav";
 
 const NavBottom = () => {
@@ -11,6 +11,19 @@ const NavBottom = () => {
     const toggleNav = () => {
       setIsOpen(!isOpen);
     };
+
+    useEffect(() => {
+        if (isOpen) {
+          document.body.style.overflow = 'hidden'; // Disable scrolling
+        } else {
+          document.body.style.overflow = ''; // Enable scrolling
+        }
+    
+        // Cleanup function to ensure overflow is reset when the component unmounts
+        return () => {
+          document.body.style.overflow = '';
+        };
+      }, [isOpen]);
 
     return (
         <div>

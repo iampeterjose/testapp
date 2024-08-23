@@ -1,12 +1,25 @@
 "use client";
 import Modal from "./Modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const CoffeeCard = ({ title, image, description, id, price }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
+
+    useEffect(() => {
+        if (isModalOpen) {
+          document.body.style.overflow = 'hidden'; // Disable scrolling
+        } else {
+          document.body.style.overflow = ''; // Enable scrolling
+        }
+    
+        // Cleanup function to ensure overflow is reset when the component unmounts
+        return () => {
+          document.body.style.overflow = '';
+        };
+      }, [isModalOpen]);
 
     return (
         <>
