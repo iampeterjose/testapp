@@ -83,11 +83,14 @@ export const CartProvider = ({ children }) => {
         console.log('Cart items updated:', cartItems);
     }, [cartItems]);
 
+    const isUserLoggedIn = () => true;
+
     return (
-        <CartContext.Provider value={{ cartItems, getTotalQuantity, handleClearCart, addItem, updateQuantity }}>
+        <CartContext.Provider value={{ cartItems, getTotalQuantity, handleClearCart, addItem, updateQuantity, isUserLoggedIn }}>
             {children}
         </CartContext.Provider>
     );
+    
 };
 
 export const useCart = () => {

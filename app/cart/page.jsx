@@ -15,7 +15,7 @@ const Cart = () => {
   }, 0);
   console.log(totalAmount);
 
-  const vat = totalAmount * .10;
+  const vat = totalAmount * .12;
 
   // Handle quantity change
   const handleQuantityChange = (id, e) => {
@@ -112,7 +112,7 @@ const Cart = () => {
                     <td>${totalAmount.toFixed(2)}</td>
                   </tr>
                   <tr>
-                    <td>Vat 10%</td>
+                    <td>Vat 12%</td>
                     <td></td>
                     <td></td>
                     <td>${vat.toFixed(2)}</td>
