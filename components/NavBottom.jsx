@@ -44,7 +44,7 @@ const NavBottom = () => {
                     <span className="flex items-center">
                         <img src="/assets/icons/home.svg" alt="Home" width={25} height={25} />
                     </span>
-                    <span className="ml-2">Home</span>
+                    <span>Home</span>
                 </Link>
                 <Link href='/cart'className="inline-flex flex-col items-center justify-center px-2 border-gray-200 border-x hover:bg-gray-200">
                     <span className="flex items-center">
@@ -53,15 +53,15 @@ const NavBottom = () => {
                         ) : (
                             ''
                         )}  
-                            <img src="/assets/icons/cart.png" alt="Cart" width={25} height={25} />
-                        </span>
-                    <span className="ml-2">Cart</span>
+                        <img src="/assets/icons/cart.png" alt="Cart" width={25} height={25} />
+                    </span>
+                    <span>Cart</span>
                 </Link>
                 <p className="inline-flex flex-col items-center justify-center px-2 border-gray-200 border-x hover:bg-gray-200" onClick={toggleNav}>
                     <span className="flex items-center">
                         <img src="/assets/icons/profile.svg" alt="Profile" width={25} height={25} />
                     </span>
-                    <span className="ml-2">Profile</span>
+                    <span>Profile</span>
                 </p>
                 <ProfileNav toggleNav={toggleNav} isOpen={isOpen} />
             </div>
