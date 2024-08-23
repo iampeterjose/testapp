@@ -55,7 +55,7 @@ const Products = () => {
         <div>
           <input 
             type="search" 
-            className="block w-full md:w-[50%] p-4 ps-10 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50" 
+            className="block w-full md:w-[400px] px-3 py-2 sm:text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50" 
             placeholder="Search coffee..."
             value={searchQuery}
             onChange={(e) => setSetSearchQuery(e.target.value)}

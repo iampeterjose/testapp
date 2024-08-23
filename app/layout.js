@@ -4,6 +4,7 @@ import Nav from "../components/Nav";
 import Footer from "./sections/Footer";
 import { CartProvider } from "./context/CartContext";
 import NavBottom from "../components/NavBottom";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,10 +16,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
+      <Head>
         {/* Prevent zooming on input focus */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-      </head>
+        </Head>
       <body className={inter.className}>
       <CartProvider>
       <Nav />

@@ -18,7 +18,7 @@ const NavBottom = () => {
         }
         {isUserLoggedIn() && 
         // Mobile screen
-        <div className="md:hidden fixed bottom-0 left-0 z-50 w-full h-16 b-slate-50 border-t-2 border-gray-200 bg-slate-50 shadow-inner">
+        <div className="md:hidden fixed -bottom-3 left-0 z-50 w-full h-24 b-slate-50 border-t-2 border-gray-200 bg-slate-50 shadow-inner">
             <div className="grid h-full max-w-full grid-cols-3 mx-auto">
                 <Link href='/' className="inline-flex flex-col items-center justify-center px-2 border-gray-200 border-x hover:bg-gray-200">
                     <span className="flex items-center">
