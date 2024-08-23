@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { navLinks } from "@/app/constants";
+import { navLinks } from "../app/constants";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 import { useCart } from "../app/context/CartContext";

@@ -1,5 +1,5 @@
 "use client";
-import PopularProductsCard from "@/components/PopularProductsCard";
+import PopularProductsCard from "../../components/PopularProductsCard";
 import { useEffect, useState } from "react";
 
 const PopularProducts = () => {

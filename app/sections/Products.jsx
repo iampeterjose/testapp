@@ -1,5 +1,5 @@
 "use client";
-import CoffeeCard from "@/components/CoffeeCard";
+import CoffeeCard from "../../components/CoffeeCard";
 import { useEffect, useState } from "react";
 
 const Products = () => {
