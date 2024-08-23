@@ -45,7 +45,7 @@ const Nav = () => {
                         <>
                         <button 
                             type="button" 
-                            className="border-2 border-slate-600 text-slate-600 h-10 w-[96px] rounded-full md:ml-8 text-lg md:my-0 my-5 hover:bg-slate-600 hover:text-slate-50" 
+                            className="hidden md:flex p-1 px-2 border-2 border-slate-600 text-slate-600 h-10 w-[96px] rounded-full md:ml-8 text-lg md:my-0 my-5 hover:bg-slate-600 hover:text-slate-50" 
                             onClick={signOut}
                         >
                             Sign Out

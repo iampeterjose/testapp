@@ -1,9 +1,16 @@
 "use client";
 import { useCart } from "../app/context/CartContext";
 import Link from "next/link";
+import { useState } from "react";
+import ProfileNav from "./ProfileNav";
 
 const NavBottom = () => {
     const { getTotalQuantity, isUserLoggedIn } = useCart();
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleNav = () => {
+      setIsOpen(!isOpen);
+    };
 
     return (
         <div>
@@ -37,12 +44,13 @@ const NavBottom = () => {
                         </span>
                     <span className="ml-2">Cart</span>
                 </Link>
-                <p className="inline-flex flex-col items-center justify-center px-2 border-gray-200 border-x hover:bg-gray-200">
+                <p className="inline-flex flex-col items-center justify-center px-2 border-gray-200 border-x hover:bg-gray-200" onClick={toggleNav}>
                     <span className="flex items-center">
                         <img src="/assets/icons/profile.svg" alt="Profile" width={25} height={25} />
                     </span>
                     <span className="ml-2">Profile</span>
                 </p>
+                <ProfileNav toggleNav={toggleNav} isOpen={isOpen} />
             </div>
         </div>
         }
