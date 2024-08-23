@@ -30,11 +30,11 @@ const PopularProducts = () => {
   const limitedCoffeeData = coffeeData.slice(0,3);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="p-5 md:p-20">Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="p-5 md:p-20">Error: {error}</div>;
   }
 
   return (

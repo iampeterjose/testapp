@@ -40,11 +40,11 @@ const Products = () => {
   }, [searchQuery, coffeeData]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="p-5 md:p-20">Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="p-5 md:p-20">Error: {error}</div>;
   }
 
   return (

@@ -7,15 +7,15 @@ const NavBottom = () => {
 
     return (
         <div>
-        {isUserLoggedIn() && getTotalQuantity() &&
+        {isUserLoggedIn() && getTotalQuantity() ? (
         <div className="hidden md:block fixed bottom-5 right-5 z-50 w-80 h-22 p-2 bg-orange-600 rounded-lg text-slate-50 shadow-xl shadow-orange-700">
             <p>Hey, Good day!</p>
-            <p>Items on cart: {getTotalQuantity()}</p>
+            <p>Items on cart: {getTotalQuantity() > 0 && `${getTotalQuantity()}`}</p>
             <Link href='/cart'>
                 <p className="text-sm">Check my cart</p>
             </Link>
         </div>
-        }
+        ) :('')}
         {isUserLoggedIn() && 
         // Mobile screen
         <div className="md:hidden fixed -bottom-3 left-0 z-50 w-full h-24 b-slate-50 border-t-2 border-gray-200 bg-slate-50 shadow-inner">
