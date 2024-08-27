@@ -3,10 +3,12 @@ import { useCart } from "../app/context/CartContext";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import ProfileNav from "./ProfileNav";
+import { useSession } from "next-auth/react";
 
 const NavBottom = () => {
     const { getTotalQuantity, isUserLoggedIn } = useCart();
     const [isOpen, setIsOpen] = useState(false);
+    const { data: session } = useSession();
 
     const toggleNav = () => {
       setIsOpen(!isOpen);
@@ -27,39 +29,39 @@ const NavBottom = () => {
 
     return (
         <div>
-        {isUserLoggedIn() && getTotalQuantity() ? (
-        <div className="hidden md:block fixed bottom-5 right-5 z-50 w-80 h-22 p-2 bg-orange-600 rounded-lg text-slate-50 shadow-xl shadow-orange-700">
-            <p>Hey, Good day!</p>
-            <p>Items on cart: {getTotalQuantity() > 0 && `${getTotalQuantity()}`}</p>
+        {session?.user && getTotalQuantity() ? (
+        <div className="hidden md:block fixed bottom-5 right-5 z-50 w-80 h-26 p-2 bg-slate-200 rounded-md text-slate-900 border-2 border-coffee shadow-xl">
+            <p className="text-lg">Hey, Good day!</p>
+            <p className="text-md">Items on cart: {getTotalQuantity() > 0 && `${getTotalQuantity()}`}</p>
             <Link href='/cart'>
-                <p className="text-sm">Check my cart</p>
+                <p className="text-md underline pt-2">Check my cart</p>
             </Link>
         </div>
         ) :('')}
-        {isUserLoggedIn() && 
+        {session?.user && 
         // Mobile screen
-        <div className="md:hidden fixed -bottom-3 left-0 z-50 w-full h-24 b-slate-50 border-t-2 border-gray-200 bg-slate-50 shadow-inner">
-            <div className="grid h-full max-w-full grid-cols-3 mx-auto">
-                <Link href='/' className="inline-flex flex-col items-center justify-center px-2 border-gray-200 border-x hover:bg-gray-200">
+        <div className="md:hidden fixed -bottom-3 left-0 z-50 w-full h-20 b-slate-50 border-t-2 rounded-t-xl border-gray-200 bg-slate-50 shadow-inner">
+            <div className="grid h-full max-w-full grid-cols-3 mx-auto text-sm">
+                <Link href='/' className="inline-flex flex-col items-center justify-center border-gray-200 border-x hover:bg-gray-200">
                     <span className="flex items-center">
-                        <img src="/assets/icons/home.svg" alt="Home" width={25} height={25} />
+                        <img src="/assets/icons/home.svg" alt="Home" width={20} height={20} />
                     </span>
                     <span>Home</span>
                 </Link>
-                <Link href='/cart'className="inline-flex flex-col items-center justify-center px-2 border-gray-200 border-x hover:bg-gray-200">
+                <Link href='/cart'className="inline-flex flex-col items-center justify-center border-gray-200 border-x hover:bg-gray-200">
                     <span className="flex items-center">
                         {getTotalQuantity() > 0 ? (
                             <span className="bg-red-600 text-white pl-2 rounded-full">{getTotalQuantity()} &nbsp;</span>
                         ) : (
                             ''
                         )}  
-                        <img src="/assets/icons/cart.png" alt="Cart" width={25} height={25} />
+                        <img src="/assets/icons/cart.png" alt="Cart" width={20} height={20} />
                     </span>
                     <span>Cart</span>
                 </Link>
-                <p className="inline-flex flex-col items-center justify-center px-2 border-gray-200 border-x hover:bg-gray-200" onClick={toggleNav}>
+                <p className="inline-flex flex-col items-center justify-center border-gray-200 border-x hover:bg-gray-200" onClick={toggleNav}>
                     <span className="flex items-center">
-                        <img src="/assets/icons/profile.svg" alt="Profile" width={25} height={25} />
+                        <img src={session.user.image} alt="Profile" width={20} height={20} className="rounded-full" />
                     </span>
                     <span>Profile</span>
                 </p>

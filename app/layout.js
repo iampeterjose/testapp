@@ -5,6 +5,7 @@ import Footer from "./sections/Footer";
 import { CartProvider } from "./context/CartContext";
 import NavBottom from "../components/NavBottom";
 import Head from "next/head";
+import Provider from "../components/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,12 +22,14 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         </Head>
       <body className={inter.className}>
+      <Provider>
       <CartProvider>
       <Nav />
       {children}
       <NavBottom />
       <Footer />
       </CartProvider>
+      </Provider>
       </body>
     </html>
   );

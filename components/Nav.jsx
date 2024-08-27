@@ -3,24 +3,32 @@ import Link from "next/link";
 import { navLinks } from "../app/constants";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
-import { useCart } from "../app/context/CartContext";
+import SignInModal from "./SignInModal";
 
 const Nav = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [providers, setProviders] = useState();
-    const { isUserLoggedIn } = useCart();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    
+    const [providers, setProviders] = useState(null);
+    const { data:session } = useSession();
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
     
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
     useEffect(() => {
-        const setProviders = async () => {
+        const setUpProviders = async () => {
             const response = await getProviders();
+
+            setProviders(response);
         }
 
-        setProviders();
+        setUpProviders();
     }, []);
+
 
     return (
         <div className="shadow-md w-full fixed -top-10 left-0">
@@ -41,7 +49,7 @@ const Nav = () => {
                             <a href={link.href} className="text-gray-800 duration-200 hover:text-coffee">{link.label}</a>
                         </li>
                     ))}
-                    {isUserLoggedIn() ? (
+                    {session?.user ? (
                         <>
                         <button 
                             type="button" 
@@ -51,23 +59,18 @@ const Nav = () => {
                             Sign Out
                         </button>
                         <Link href='/profile'>
-                            <img src="/assets/icons/profile.svg" alt="NavProfile" width={40} height={40} className="hidden md:flex ml-2 p-1 border-2 rounded-full"/>
+                            <img src={session?.user.image} alt="NavProfile" width={40} height={40} className="hidden md:flex ml-2 p-1 border-2 rounded-full"/>
                         </Link>
                         </>
                     ) : (
                         <>
-                            {providers && 
-                                Object.values((providers).map((provider) => (
-                                    <button 
-                                        type="button"
-                                        key={provider.name}
-                                        onClick={() => signIn(provider.id)}
-                                        className="border-2 bg-orange-600 text-slate-50 h-10 w-[96px] rounded-full md:ml-8 text-lg md:my-0 my-5 hover:border-orange-600 hover:text-orange-600"
-                                    >
-                                        Sign In
-                                    </button>
-                                )))
-                            }
+                            <button
+                                className="p-1 px-2 border-2 border-orange-600 text-orange-600 h-10 w-[96px] rounded-full md:ml-8 text-lg md:my-0 my-5 hover:bg-orange-600 hover:text-orange-50" 
+                                onClick={openModal}
+                            >
+                                Sign In
+                            </button>
+                            <SignInModal isOpen={isModalOpen} onClose={closeModal} providers={providers} />
                         </>
                     )}
                 </ul>

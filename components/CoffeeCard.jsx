@@ -36,8 +36,8 @@ const CoffeeCard = ({ title, image, description, id, price }) => {
                 />
             </div>
             <div className="w-80 px-6">
-                <h3 className="mt-2 text-xl leading-normal font-semibold font-palanquin">{title}</h3>
-                <p className="mt-2 font-semibold font-montserrat text-orange-700 text-lg leading-normal">${price}</p>
+                <h3 className="mt-2 text-xl leading-normal">{title}</h3>
+                <p className="mt-2 text-lg text-orange-700 leading-normal">${price}</p>
             </div>
         </div>
 
@@ -45,14 +45,14 @@ const CoffeeCard = ({ title, image, description, id, price }) => {
         <div className="flex md:hidden flex-col border-b-2 hover:cursor-pointer group hover:shadow-xl transition-shadow hover:bg-slate-100 duration-500" onClick={openModal}>
             <div className="flex justify-between items-center p-2">
                 <div>
-                    <h3 className="mt-2 text-xl leading-normal font-semibold font-palanquin">{title}</h3>
-                    <p className="mt-2 font-semibold font-montserrat text-orange-700 text-lg leading-normal">${price}</p>
+                    <h3 className="mt-2 text-md leading-normal">{title}</h3>
+                    <p className="mt-2 text-md text-orange-700 leading-normal">${price}</p>
                 </div>
                 <div>
                     <img 
                         src={image} 
                         alt={title} 
-                        className="w-[80px] h-[80px] rounded-lg"
+                        className="w-[80px] h-[80px] rounded-md"
                     />
                 </div>
             </div>

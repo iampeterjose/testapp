@@ -1,10 +1,41 @@
 "use client";
-import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { useCart } from '../context/CartContext';
+import { useRouter } from 'next/navigation';
 
 const Cart = () => {
   const { cartItems, handleClearCart, updateQuantity } = useCart();
-  const [isQuantity, setIsQuantity] = useState(0);
+  const { data: session } = useSession();
+  const router = useRouter();
+
+  const handleCreateOrder = async (e) => {
+    if(!session || !session.user){
+      alert(`You must be logged in to place an order!`);
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/order/new', {
+        method: 'POST',
+        body: JSON.stringify({
+          creator: session.user.email,
+          orders: cartItems,
+        }),
+      });
+
+      if (response.ok){
+        handleClearCart();
+        alert('Orders successfully processed!');
+        router.push('/');
+      }
+      else {
+        alert('Failed to process orders!');
+      }
+    } catch (error) {
+      console.log(error);
+      alert('An error occurred while processing your order.');
+    }
+  };
 
   // Calculate total amount
   const totalAmount = cartItems.reduce((total, item) => {
@@ -47,47 +78,49 @@ const Cart = () => {
         <div className='w-full'>
           <h1 className='text-2xl'>Cart</h1>
           {cartItems.length > 0 ? (
+            <form action="">
             <ul className='flex flex-col'>
               {cartItems.map((item) => (
                 <li key={item.id} className='my-4 border-b-2 border-b-slate-200 flex justify-between items-center p-2'>
                   <div className='flex'>
-                  <button type="button" className="p-2 bg-slate-300 w-8 h-14 my-8 rounded-l-md" onClick={() => handleDecrementQuantity(item.id)}>-</button>
+                  <button type="button" className="p-2 bg-slate-300 w-8 h-14 my-6 rounded-l-md" onClick={() => handleDecrementQuantity(item.id)}>-</button>
                     <input type="text" 
                       value={item.quantity}
-                      className='w-12 h-14 border-2 px-3 py-2 sm:text-base border-gray-300 my-8 pl-4'
+                      className='w-12 h-14 border-2 px-3 py-2 sm:text-base border-gray-300 my-6 pl-4'
                       onChange={(e) => handleQuantityChange(item.id, e)}
                     />
-                    <button type="button" className="p-2 bg-slate-300 w-8 h-14 my-8 rounded-r-md mr-4" onClick={(e) => handleIncrementQuantity(item.id)}>+</button>
+                    <button type="button" className="p-2 bg-slate-300 w-8 h-14 my-6 rounded-r-md mr-4" onClick={(e) => handleIncrementQuantity(item.id)}>+</button>
                     
                     <img 
                       src={item.image} 
                       alt={item.title} 
-                      className="w-[100px] h-[100px] rounded-lg"
+                      className="w-[80px] h-[80px] rounded-md"
                     />
                   </div>
                   <div>
                     <h3 className="text-right mt-2 text-md leading-normal">{item.title}</h3>
-                    <p className="text-right text-sm leading-normal">${(item.price * item.quantity).toFixed(2)}</p>
+                    <p className="text-right text-sm text-orange-700 leading-normal">${(item.price * item.quantity).toFixed(2)}</p>
                   </div>
                 </li>
               ))}
             </ul>
+            </form>
           ) : (
             <p>No items in the cart</p>
           )}
           {cartItems.length > 0 && 
             <button
               onClick={handleClearCart}
-              className="mt-4 px-6 py-2 bg-red-500 text-white rounded-full hover:bg-red-600"
+              className="mt-4 px-6 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
             >
               Clear Cart
             </button>
           }
         </div>
         {cartItems.length > 0 && 
-          <div className='w-full mt-10 md:p-20'>
+          <div className='w-full mt-10 md:mt-0 md:p-20'>
             <h2 className='text-lg'>Order Summary</h2>
-              <table className='table-auto w-full mt-4'>
+              <table className='table-auto w-full mt-10 md:mt-2'>
                 <thead className='text-left text-md'>
                   <tr>
                     <th>Item</th>
@@ -127,9 +160,9 @@ const Cart = () => {
               </table>
 
               <button 
-                className="px-6 py-2 mt-10 bg-blue-500 text-white rounded-full hover:bg-blue-600 w-full"
-                onClick={(e) => window.confirm(`Not Yet Available`)}
-              >Proceed to Payment
+                className="px-6 py-2 mt-10 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full"
+                onClick={handleCreateOrder}
+              >Order Now
               </button>
           </div>
           

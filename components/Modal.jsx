@@ -24,29 +24,30 @@ const Modal = ({ isOpen, onClose, title, image, description, id, price }) => {
                 &times;
                 </button>
                 {/* Modal content */}
-                <div className="flex">
-                    <img src={image} alt={title} className="w-48 h-48 rounded-lg mb-4" />
-                    <div className="flex flex-col justify-end items-end mb-4 pl-2">
+                <div className="flex md:h-50">
+                    <div className="flex flex-col w-full">
+                        <h2 className="mt-2 text-md leading-normal">{title}</h2>
+                        <p className="mt-2 text-md text-orange-700 leading-normal">${price}</p>
+                        <img src={image} alt={title} className="w-[80px] h-[80px] md:w-48 md:h-48 rounded-md" />
+                    </div>
+                    <div className="flex flex-col justify-end items-start pl-2 w-full">
                         <label>
                             Quantity: 
                             <input 
                                 type="number"
                                 value={quantity}
                                 onChange={(e) => setQuantity(e.target.value)}
-                                className="h-14 w-full md:w-[80px] px-3 py-2 sm:text-base pl-2 ml-2 border-2 text-base border-gray-700 rounded-md"
+                                className="h-14 w-full px-3 py-2 sm:text-base pl-2 border-2 text-base border-gray-700 rounded-md"
                             />
                         </label>
                         <button 
-                            className="px-6 py-2 mt-3 bg-blue-500 text-white rounded-full hover:bg-blue-600 w-full"
+                            className="py-2 mt-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full"
                             onClick={handleAdd}
                         >
                             Add
                         </button>
                     </div>
                 </div>
-                <h2 className="mt-2 text-xl leading-normal font-semibold font-palanquin">{title}</h2>
-                <p className="mt-2 font-semibold font-montserrat text-orange-700 text-lg leading-normal">${price}</p>
-                <p className="mt-4 font-montserrat">{description}</p>
             </div>
         </div>
     )
