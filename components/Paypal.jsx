@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
 
-const Paypal = ({grandTotal}) => {
+const Paypal = ({grandTotal, onSuccess}) => {
     const paypal = useRef();
     const [isPayPalReady, setIsPayPalReady] = useState(false);
 
@@ -61,7 +61,7 @@ const Paypal = ({grandTotal}) => {
                 }
             }).render(paypal.current);
         }
-    }, [isPayPalReady]);
+    }, [isPayPalReady, grandTotal, onSuccess]);
 
     return (
         <div>
