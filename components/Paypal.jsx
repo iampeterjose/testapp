@@ -49,7 +49,7 @@ const Paypal = ({grandTotal, onPaymentSuccess}) => {
                 },
                 onApprove: async (data, actions) => {
                     try {
-                        await actions.order.capture();
+                        const details = await actions.order.capture();
                         const orderId = data.orderID; //Capture the order ID
 
                         if(onPaymentSuccess){
