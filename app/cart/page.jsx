@@ -2,16 +2,18 @@
 import { useSession } from 'next-auth/react';
 import { useCart } from '../context/CartContext';
 import { useRouter } from 'next/navigation';
+import Paypal from '../../components/Paypal';
+import { useState } from 'react';
 
 const Cart = () => {
   const { cartItems, handleClearCart, updateQuantity } = useCart();
   const { data: session } = useSession();
   const router = useRouter();
+  const [checkOut, setCheckOut] = useState(false);
 
   const handleCreateOrder = async (e) => {
-    if(!session || !session.user){
-      alert(`You must be logged in to place an order!`);
-      return;
+    if(session || session.user){
+      setCheckOut(true);
     }
 
     try {
@@ -44,9 +46,9 @@ const Cart = () => {
     //Accumulate the total
     return total + itemTotal;
   }, 0);
-  console.log(totalAmount);
 
   const vat = totalAmount * .12;
+  const grandTotal = (totalAmount + vat).toFixed(2);
 
   // Handle quantity change
   const handleQuantityChange = (id, e) => {
@@ -120,7 +122,7 @@ const Cart = () => {
         {cartItems.length > 0 && 
           <div className='w-full mt-10 md:mt-0 md:p-20'>
             <h2 className='text-lg'>Order Summary</h2>
-              <table className='table-auto w-full mt-10 md:mt-2'>
+              <table className='table-auto w-full my-10 md:mt-2'>
                 <thead className='text-left text-md'>
                   <tr>
                     <th>Item</th>
@@ -151,19 +153,23 @@ const Cart = () => {
                     <td>${vat.toFixed(2)}</td>
                   </tr>
                   <tr className='font-bold border-double border-t-8'>
-                    <td>Total Amount</td>
+                    <td>Grand Total</td>
                     <td></td>
                     <td></td>
-                    <td>${(totalAmount + vat).toFixed(2)}</td>
+                    <td>${grandTotal}</td>
                   </tr>
                 </tbody>
               </table>
 
-              <button 
-                className="px-6 py-2 mt-10 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full"
-                onClick={handleCreateOrder}
-              >Order Now
-              </button>
+              {checkOut ? (
+                <Paypal grandTotal={grandTotal} />
+              ) : (
+                <button 
+                  className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full"
+                  onClick={handleCreateOrder}
+                >Check Out
+                </button>
+              )}
           </div>
           
         }
