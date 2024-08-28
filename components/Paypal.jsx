@@ -41,7 +41,7 @@ const Paypal = ({grandTotal, onPaymentSuccess}) => {
                             {
                                 amount: {
                                     currency_code: "USD",
-                                    value: grandTotal
+                                    value: parseFloat(grandTotal).toFixed(2)
                                 }
                             }
                         ]
@@ -49,7 +49,7 @@ const Paypal = ({grandTotal, onPaymentSuccess}) => {
                 },
                 onApprove: async (data, actions) => {
                     try {
-                        const details = await actions.order.capture();
+                        await actions.order.capture();
                         const orderId = data.orderID; //Capture the order ID
 
                         if(onPaymentSuccess){
