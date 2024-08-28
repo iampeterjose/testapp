@@ -10,39 +10,44 @@ const Cart = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [checkOut, setCheckOut] = useState(false);
+  const [orderId, setOrderId] = useState(null); //Store order ID
 
   const handleCreateOrder = async (e) => {
     if (!session || !session.user) {
       alert('You need to be logged in to proceed.');
       return;
     }
-
+    //Start the PayPal payment process
     setCheckOut(true);
+  };
 
+  const handlePaymentSuccess = async (orderId) => {
     try {
+      //Create the order in database
       const response = await fetch('/api/order/new', {
         method: 'POST',
         body: JSON.stringify({
           creator: session.user.email,
           orders: cartItems,
+          orderId: orderId //Send the PayPal order ID
         }),
       });
 
       if (response.ok){
-        handleClearCart();
-        alert('Orders successfully processed!');
+        handleClearCart(); //Clear after successful payment
+        alert('Order successfully processed!');
         router.push('/');
       }
       else {
         alert('Failed to process orders!');
-        setCheckOut(false)
+        setCheckOut(false);
       }
     } catch (error) {
-      console.log(error);
-      alert('An error occurred while processing your order.');
+      console.error('Error creating order in the database:', error);
+      alert('An error occurred while creating your order.');
       setCheckOut(false)
     }
-  };
+  }
 
   // Calculate total amount
   const totalAmount = cartItems.reduce((total, item) => {
@@ -167,7 +172,7 @@ const Cart = () => {
               </table>
 
               {checkOut ? (
-                <Paypal grandTotal={grandTotal} />
+                <Paypal grandTotal={grandTotal} onPaymentSuccess={handlePaymentSuccess} />
               ) : (
                 <button 
                   className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full"

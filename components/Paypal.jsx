@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
 
-const Paypal = ({grandTotal}) => {
+const Paypal = ({grandTotal, onPaymentSuccess}) => {
     const paypal = useRef();
     const [isPayPalReady, setIsPayPalReady] = useState(false);
 
@@ -39,7 +39,6 @@ const Paypal = ({grandTotal}) => {
                         intent: "CAPTURE",
                         purchase_units: [
                             {
-                                title: "My Coffee Order",
                                 amount: {
                                     currency_code: "USD",
                                     value: grandTotal
@@ -50,18 +49,26 @@ const Paypal = ({grandTotal}) => {
                 },
                 onApprove: async (data, actions) => {
                     try {
-                        const order = await actions.order.capture();
-                        console.log(order);
+                        const details = await actions.order.capture();
+                        const orderId = data.orderID; //Capture the order ID
+
+                        if(onPaymentSuccess){
+                            onPaymentSuccess(orderId);
+                        }
+                        alert('Payment successful!');
+
                     } catch (error) {
-                        console.error("Error capturing the order:", error);
+                        console.error("PayPal error:", error);
+                        alert('An error occured with PayPal payment');
                     }
                 },
-                onError: (err) => {
-                    console.error("PayPal Button Error:", err);
+                onError: (error) => {
+                    console.error("PayPal error:", error);
+                    alert('An error occured with PayPal payment');
                 }
             }).render(paypal.current);
         }
-    }, [isPayPalReady]);
+    }, [isPayPalReady, grandTotal, onPaymentSuccess]);
 
     return (
         <div>
