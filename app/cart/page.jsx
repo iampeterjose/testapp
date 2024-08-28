@@ -28,22 +28,20 @@ const Cart = () => {
         }),
       });
 
-      if (!response.ok){
-        // throw new Error('Failed to process order!');
-        alert('Failed to process the order!');
+      if (response.ok){
+        handleClearCart();
+        alert('Orders successfully processed!');
+        router.push('/');
+      }
+      else {
+        alert('Failed to process orders!');
+        setCheckOut(false)
       }
     } catch (error) {
       console.log(error);
       alert('An error occurred while processing your order.');
-      setCheckOut(false);
+      setCheckOut(false)
     }
-  };
-
-  const handlePaymentSuccess = () => {
-    handleClearCart();
-    alert('Order successfully processed!');
-    setCheckOut(false);
-    router.push('/');
   };
 
   // Calculate total amount
@@ -169,7 +167,7 @@ const Cart = () => {
               </table>
 
               {checkOut ? (
-                <Paypal grandTotal={grandTotal} onSuccess={handlePaymentSuccess} />
+                <Paypal grandTotal={grandTotal} />
               ) : (
                 <button 
                   className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 w-full"

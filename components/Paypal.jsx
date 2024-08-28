@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
 
-const Paypal = ({grandTotal, onSuccess}) => {
+const Paypal = ({grandTotal}) => {
     const paypal = useRef();
     const [isPayPalReady, setIsPayPalReady] = useState(false);
 
@@ -52,7 +52,6 @@ const Paypal = ({grandTotal, onSuccess}) => {
                     try {
                         const order = await actions.order.capture();
                         console.log(order);
-                        onSuccess();
                     } catch (error) {
                         console.error("Error capturing the order:", error);
                     }
@@ -62,7 +61,7 @@ const Paypal = ({grandTotal, onSuccess}) => {
                 }
             }).render(paypal.current);
         }
-    }, [isPayPalReady, grandTotal, onSuccess]);
+    }, [isPayPalReady]);
 
     return (
         <div>
