@@ -31,7 +31,9 @@ const ProfileNav = ({toggleNav, isOpen}) => {
                 <Link href='/history'>
                     <li className="p-4 hover:text-slate-50 hover:bg-coffee"><p onClick={handleNavigation}>Order History</p></li>
                 </Link>
-                <li className="p-4 hover:text-slate-50 hover:bg-coffee"><p onClick={signOut}>Sign Out</p></li>
+                <Link href='/'>
+                    <li className="p-4 hover:text-slate-50 hover:bg-coffee"><p onClick={signOut}>Sign Out</p></li>
+                </Link>
             </ul>
             </nav>
         </div>

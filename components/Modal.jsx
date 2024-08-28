@@ -1,19 +1,47 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCart } from "../app/context/CartContext";
+import { useSession, getProviders } from "next-auth/react";
+import SignInModal from "./SignInModal";
 
 const Modal = ({ isOpen, onClose, title, image, description, id, price }) => {
     const [quantity, setQuantity] = useState(1);
     const { addItem } = useCart();
+    const { data: session } = useSession();
+    const [providers, setProviders] = useState(null);
+
+    
+    const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+
+    useEffect(() => {
+        const setUpProviders = async () => {
+            const response = await getProviders();
+
+            setProviders(response);
+        }
+
+        setUpProviders();
+    }, []);
 
     const handleAdd = () => {
-        addItem({ id, title, price, quantity: parseInt(quantity, 10), image });
+        if(session){
+            addItem({ id, title, price, quantity: parseInt(quantity, 10), image });
+            onClose();
+        } 
+        else {
+            setIsSignInModalOpen(true);
+        } 
+    };
+
+    const handleSignInModalClose = () => {
+        setIsSignInModalOpen(false); // Close the SignInModal
         onClose();
     };
     
     if(!isOpen) return null;
 
     return (
+        <>
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="relative bg-white p-6 rounded-md shadow-lg w-4/5 lg:w-2/5 h-150">
                 {/* Close button */}
@@ -49,7 +77,10 @@ const Modal = ({ isOpen, onClose, title, image, description, id, price }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>          
+        {/* Conditionally render the SignInModal */}
+        {isSignInModalOpen && <SignInModal isOpen={isSignInModalOpen} onClose={handleSignInModalClose} providers={providers} />}
+        </>
     )
 }
 
