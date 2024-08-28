@@ -52,6 +52,7 @@ const Paypal = ({grandTotal, onSuccess}) => {
                     try {
                         const order = await actions.order.capture();
                         console.log(order);
+                        onSuccess();
                     } catch (error) {
                         console.error("Error capturing the order:", error);
                     }

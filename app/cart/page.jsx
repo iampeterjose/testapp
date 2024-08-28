@@ -29,7 +29,8 @@ const Cart = () => {
       });
 
       if (!response.ok){
-        throw new Error('Failed to process orders!');
+        // throw new Error('Failed to process order!');
+        alert('Failed to process the order!');
       }
     } catch (error) {
       console.log(error);
@@ -41,6 +42,7 @@ const Cart = () => {
   const handlePaymentSuccess = () => {
     handleClearCart();
     alert('Order successfully processed!');
+    setCheckOut(false);
     router.push('/');
   };
 
