@@ -20,7 +20,7 @@ const Cart = () => {
     setCheckOut(true);
   };
 
-  const handlePaymentSuccess = async (id) => {
+  const handlePaymentSuccess = async (orderId) => {
     try {
       //Create the order in database
       const response = await fetch('/api/order/new', {
@@ -28,7 +28,7 @@ const Cart = () => {
         body: JSON.stringify({
           creator: session.user.email,
           orders: cartItems,
-          orderId: id, //Send the PayPal order ID
+          orderId: orderId, //Send the PayPal order ID
         }),
       });
 
