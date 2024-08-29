@@ -4,7 +4,7 @@ const HistoryCard = ({ data, index }) => {
 
     return (
         <div className='flex flex-col w-full my-2'>
-            <ul className='hover:bg-slate-50 hover:shadow-lg py-2 my-2'>
+            <ul className='hover:bg-slate-50 hover:shadow-lg py-2'>
                 {data.orders.map((item) => (
                     <>
                     <li key={index}>

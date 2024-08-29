@@ -6,8 +6,8 @@ export const POST = async (request) => {
     try {
         await connectToDB();
 
-        const { creator, orders } = await request.json();
-        const newOrder = new Order({ creator, orders });
+        const { creator, orders, orderID } = await request.json();
+        const newOrder = new Order({ creator, orders, orderID });
 
         await newOrder.save();
         

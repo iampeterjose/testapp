@@ -28,14 +28,13 @@ const Cart = () => {
         body: JSON.stringify({
           creator: session.user.email,
           orders: cartItems,
-          orderId: id //Send the PayPal order ID
+          orderId: id, //Send the PayPal order ID
         }),
       });
 
       if (response.ok){
         handleClearCart(); //Clear after successful payment
         alert('Order successfully processed!');
-        router.push('/');
       }
       else {
         alert('Failed to process orders!');
