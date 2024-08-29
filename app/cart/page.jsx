@@ -35,6 +35,7 @@ const Cart = () => {
       if (response.ok){
         handleClearCart(); //Clear after successful payment
         alert('Order successfully processed!');
+        router.push('/');
       }
       else {
         alert('Failed to process orders!');

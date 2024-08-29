@@ -12,6 +12,7 @@ const HistoryCard = ({ data, index }) => {
                     </li>
                     </>
                 ))}
+                <p className='text-sm text-slate-500'>Order Id: {data.orderId}</p>
                 <p className='text-sm text-slate-500'>
                     {new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' })}
                 </p>
