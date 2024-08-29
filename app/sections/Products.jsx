@@ -12,7 +12,7 @@ const Products = () => {
   useEffect(() => {
     const fetchCoffeeData = async () => {
       try {
-        const response = await fetch('https://api.sampleapis.com/coffee/hot');
+        const response = await fetch('https://gist.githubusercontent.com/iampeterjose/18341e83a86e3dcd33b148c9e090e0a9/raw/b9d7d27ff2b91588ee47a508fe527f5e34386b0a/coffeedata.json');
 
         if(!response.ok){
           throw new Error('Network response was not ok');
@@ -34,7 +34,7 @@ const Products = () => {
     // Filter coffee data based on the search query
     const lowercasedQuery = searchQuery.toLowerCase();
     const filteredData = coffeeData.filter(coffee =>
-      coffee.title.toLowerCase().includes(lowercasedQuery)
+      coffee.name.toLowerCase().includes(lowercasedQuery)
     );
     setFilteredCoffeeData(filteredData);
   }, [searchQuery, coffeeData]);
@@ -66,10 +66,10 @@ const Products = () => {
         {filteredCoffeeData.map((coffee) => (
           <CoffeeCard 
             key={coffee.id} 
-            title={coffee.title}
+            title={coffee.name}
             image={coffee.image}
-            description={coffee.description}
-            price={2.99}
+            description="coffee"
+            price={parseFloat(coffee.price).toFixed(2)}
             id={coffee.id}
           />
         ))}
