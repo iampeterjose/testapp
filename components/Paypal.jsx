@@ -9,24 +9,26 @@ const Paypal = ({grandTotal, onPaymentSuccess}) => {
         // Check if the PayPal script is already loaded
         if (window.paypal) {
             setIsPayPalReady(true);
-        } else {
+            return;
+        } 
+        else {
             // Listen for the PayPal script load event
             const handleScriptLoad = () => {
                 setIsPayPalReady(true);
-            };
+        };
 
-            // Create and append the PayPal script
-            const script = document.createElement("script");
-            script.src = "https://sandbox.paypal.com/sdk/js?client-id=Aaem4_MW1kd-SNbooCSeGAJr19fnBNP8Cvh9WDg49GhEL9wjx8cFr-QPQfB4REZFhSVQmzXQ7i4mVbs7&currency=USD";
-            script.async = true;
-            script.onload = handleScriptLoad;
-            script.onerror = () => console.error("Failed to load PayPal script");
-            document.body.appendChild(script);
+        // Create and append the PayPal script
+        const script = document.createElement("script");
+        script.src = "https://sandbox.paypal.com/sdk/js?client-id=Aaem4_MW1kd-SNbooCSeGAJr19fnBNP8Cvh9WDg49GhEL9wjx8cFr-QPQfB4REZFhSVQmzXQ7i4mVbs7&currency=USD";
+        script.async = true;
+        script.onload = handleScriptLoad;
+        script.onerror = () => console.error("Failed to load PayPal script");
+        document.body.appendChild(script);
 
-            // Cleanup on component unmount
-            return () => {
-                document.body.removeChild(script);
-            };
+        // Cleanup on component unmount
+        return () => {
+            document.body.removeChild(script);
+        };
         }
     }, []);
 
@@ -50,16 +52,16 @@ const Paypal = ({grandTotal, onPaymentSuccess}) => {
                 onApprove: async (data, actions) => {
                     try {
                         const details = await actions.order.capture();
-                        const orderId = data.orderID; //Capture the order ID
+                        const orderId = data.orderID;
 
-                        if(onPaymentSuccess){
+                        if (onPaymentSuccess) {
                             onPaymentSuccess(orderId);
                         }
-                        alert('Payment successful!');
 
+                        // Optionally update any other component or state
                     } catch (error) {
                         console.error("PayPal error:", error);
-                        alert('An error occured with PayPal payment');
+                        alert('An error occurred with PayPal payment');
                     }
                 },
                 onError: (error) => {

@@ -10,7 +10,6 @@ const Cart = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [checkOut, setCheckOut] = useState(false);
-  const [orderId, setOrderId] = useState(null); //Store order ID
 
   const handleCreateOrder = async (e) => {
     if (!session || !session.user) {
@@ -21,7 +20,7 @@ const Cart = () => {
     setCheckOut(true);
   };
 
-  const handlePaymentSuccess = async (orderId) => {
+  const handlePaymentSuccess = async (id) => {
     try {
       //Create the order in database
       const response = await fetch('/api/order/new', {
@@ -29,7 +28,7 @@ const Cart = () => {
         body: JSON.stringify({
           creator: session.user.email,
           orders: cartItems,
-          orderId: orderId //Send the PayPal order ID
+          orderId: id //Send the PayPal order ID
         }),
       });
 
