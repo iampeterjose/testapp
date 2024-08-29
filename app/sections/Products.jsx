@@ -69,7 +69,7 @@ const Products = () => {
             title={coffee.name}
             image={coffee.image}
             description="coffee"
-            price={parseFloat(coffee.price).toFixed(2)}
+            price={(coffee.price).toFixed(2)}
             id={coffee.id}
           />
         ))}
