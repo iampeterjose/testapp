@@ -94,13 +94,13 @@ const Cart = () => {
               {cartItems.map((item) => (
                 <li key={item.id} className='my-4 border-b-2 border-b-slate-200 flex justify-between items-center p-2'>
                   <div className='flex'>
-                  <button type="button" className="p-2 bg-slate-300 w-8 h-14 my-6 rounded-l-md" onClick={() => handleDecrementQuantity(item.id)}>-</button>
+                  <button type="button" className="p-2 w-8 h-14 my-6" onClick={() => handleDecrementQuantity(item.id)}>-</button>
                     <input type="text" 
                       value={item.quantity}
-                      className='w-12 h-14 border-2 px-3 py-2 sm:text-base border-gray-300 my-6 pl-4'
+                      className='w-12 h-14 border-b-2 px-3 py-2 sm:text-base border-gray-300 my-6 pl-4'
                       onChange={(e) => handleQuantityChange(item.id, e)}
                     />
-                    <button type="button" className="p-2 bg-slate-300 w-8 h-14 my-6 rounded-r-md mr-4" onClick={(e) => handleIncrementQuantity(item.id)}>+</button>
+                    <button type="button" className="p-2 w-8 h-14 my-6 mr-4" onClick={(e) => handleIncrementQuantity(item.id)}>+</button>
                     
                     <img 
                       src={item.image} 
