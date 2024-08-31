@@ -20,8 +20,11 @@ const History = () => {
                     throw new Error(`Failed to fetch orders!`);
                 }
                 const data = await response.json();
+
+                // Sort orders by date in descending order (most recent first)
+                const sortedOrders = data.sort((a, b) => new Date(b.date) - new Date(a.date));
     
-                setAllOrders(data);
+                setAllOrders(sortedOrders);
             } catch (err) {
                 setError(err.message);
             } finally {
