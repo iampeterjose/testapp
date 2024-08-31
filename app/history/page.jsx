@@ -32,8 +32,8 @@ const History = () => {
         }
     },[session]);
 
-    if(loading) return <p>Loading...</p>
-    if(error) return <p>Error: {error}</p>
+    // if(loading) return <p>Loading...</p>
+    // if(error) return <p>Error: {error}</p>
 
     console.log(allOrders);
 
@@ -45,6 +45,8 @@ const History = () => {
                     {allOrders.length > 0 ? (
                         <>
                         <h1 className='text-xl'>Order History</h1>
+                        {loading && <p>Loading....</p>}
+                        {error && <p>Loading....</p>}
                         {allOrders.map((orders, index) => (
                             <HistoryCard 
                             key={index} 
