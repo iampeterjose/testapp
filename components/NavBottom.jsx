@@ -55,9 +55,9 @@ const NavBottom = () => {
                         ) : (
                             ''
                         )}  
-                        <img src="/assets/icons/cart.png" alt="Cart" width={20} height={20} />
+                        <img src="/assets/icons/bag.svg" alt="Bag" width={20} height={20} />
                     </span>
-                    <span>Cart</span>
+                    <span>Orders</span>
                 </Link>
                 <p className="inline-flex flex-col items-center justify-center border-gray-200 border-x hover:bg-gray-200" onClick={toggleNav}>
                     <span className="flex items-center">

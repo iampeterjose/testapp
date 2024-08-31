@@ -4,7 +4,7 @@ const HistoryCard = ({ data, index }) => {
 
     return (
         <div className='flex flex-col w-full my-2'>
-            <ul className='border-b-2 hover:cursor-pointer group hover:shadow-xl transition-shadow hover:bg-slate-100 duration-500 py-2'>
+            <ul className='border-b-2 hover:cursor-pointer group hover:shadow-xl transition-shadow hover:bg-slate-100 duration-500'>
                 {data.orders.map((item) => (
                     <>
                     <li key={index}>

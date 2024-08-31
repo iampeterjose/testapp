@@ -41,7 +41,7 @@ const History = () => {
     return (
         <div className="flex flex-col min-h-screen">
             <main className="flex-grow">
-                <div className='flex flex-col p-5 md:p-20 mt-32 md:mt-20 '>
+                <div className='flex flex-col p-5 md:p-20 mt-32 md:mt-20 gap-1 md:gap-4'>
                     {allOrders.length > 0 ? (
                         <>
                         <h1 className='text-xl'>Order History</h1>
