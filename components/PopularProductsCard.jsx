@@ -11,7 +11,7 @@ const PopularProductsCard = ({ title, image, description, id, price }) => {
         <img 
             src={image} 
             alt={title} 
-            className="w-[80px] h-[80px] md:w-[180px] md:h-[180px] rounded-lg"
+            className="w-[80px] h-[80px] md:w-[180px] md:h-[180px] rounded-md"
         />
         <div className="">
             <h3 className="mt-2 text-sm md:text-xl leading-normal font-semibold font-palanquin">{title}</h3>

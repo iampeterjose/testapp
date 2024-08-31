@@ -46,7 +46,7 @@ const Nav = () => {
                 <ul className={`md:flex md:items-center md:pb-0 pb-10 absolute md:static bg-slate-50 md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${isMenuOpen ? 'top-20 shadow-lg':'top-[-490px]'} md:shadow-none`}>
                     {navLinks.map((link) => (
                         <li key={link.label} className="flex flex-row md:ml-8 text-lg md:my-0 my-5">
-                            <a href={link.href} className="text-gray-800 duration-200 hover:text-coffee">{link.label}</a>
+                            <a href={link.href} className="text-gray-800 duration-200 hover:text-coconut">{link.label}</a>
                         </li>
                     ))}
                     {session?.user ? (

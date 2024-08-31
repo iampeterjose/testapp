@@ -22,6 +22,7 @@ module.exports = {
         'primary-orange': '#FF5722',
         'coffee': '#B89C6C',
         'coffee-1': '#D4B88F',
+        'coconut': '#E1C699'
       },
     },
   },

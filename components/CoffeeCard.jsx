@@ -25,19 +25,19 @@ const CoffeeCard = ({ title, image, description, id, price }) => {
         <>
         {/* Desktop screen */}
         <div 
-            className="hidden md:flex  justify-center items-center flex-col w-full mb-6 max-sm:w-full hover:cursor-pointer group hover:shadow-xl transition-shadow hover:bg-slate-100 duration-500"
+            className="hidden md:flex  justify-center items-center flex-col w-full hover:cursor-pointer group hover:shadow-xl transition-shadow hover:bg-slate-100 duration-500"
             onClick={openModal}
         >
-            <div className="flex-shrink-0 md:mr-6">
+            <div className="flex-shrink-0">
                 <img 
                     src={image} 
                     alt={title} 
-                    className="w-[280px] h-[280px] rounded-lg"
+                    className="w-[280px] h-[280px] rounded-md"
                 />
             </div>
             <div className="w-80 px-6">
                 <h3 className="mt-2 text-xl leading-normal">{title}</h3>
-                <p className="mt-2 text-lg text-orange-700 leading-normal">${price}</p>
+                <p className="text-md text-orange-700 leading-normal">${price}</p>
             </div>
         </div>
 
@@ -46,7 +46,7 @@ const CoffeeCard = ({ title, image, description, id, price }) => {
             <div className="flex justify-between items-center p-2">
                 <div>
                     <h3 className="mt-2 text-md leading-normal">{title}</h3>
-                    <p className="mt-2 text-md text-orange-700 leading-normal">${price}</p>
+                    <p className="text-sm text-orange-700 leading-normal">${price}</p>
                 </div>
                 <div>
                     <img 
