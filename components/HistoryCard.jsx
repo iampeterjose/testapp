@@ -3,7 +3,7 @@ import React from 'react';
 const HistoryCard = ({ data, index }) => {
 
     return (
-        <div className='flex flex-col w-full mt-2'>
+        <div className='flex flex-col w-full mt-1'>
             <ul className='gap-2 md:gap-4 p-2 border-b-2 hover:cursor-pointer group hover:shadow-xl transition-shadow hover:bg-slate-100 duration-500'>
                 {data.orders.map((item) => (
                     <>

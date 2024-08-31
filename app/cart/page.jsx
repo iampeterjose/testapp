@@ -90,17 +90,17 @@ const Cart = () => {
           <h1 className='text-2xl'>Cart</h1>
           {cartItems.length > 0 ? (
             <form action="">
-            <ul className='flex flex-col'>
+            <ul className='flex flex-col mt-2'>
               {cartItems.map((item) => (
-                <li key={item.id} className='my-4 border-b-2 border-b-slate-200 flex justify-between items-center p-2'>
+                <li key={item.id} className='my-2 border-b-2 border-b-slate-200 flex justify-between items-center p-2'>
                   <div className='flex'>
-                  <button type="button" className="p-2 w-8 h-14 my-6" onClick={() => handleDecrementQuantity(item.id)}>-</button>
+                  <button type="button" className="p-2 w-8 h-14 my-6 text-lg" onClick={() => handleDecrementQuantity(item.id)}>-</button>
                     <input type="text" 
                       value={item.quantity}
                       className='w-12 h-14 border-b-2 px-3 py-2 sm:text-base border-gray-300 my-6 pl-4'
                       onChange={(e) => handleQuantityChange(item.id, e)}
                     />
-                    <button type="button" className="p-2 w-8 h-14 my-6 mr-4" onClick={(e) => handleIncrementQuantity(item.id)}>+</button>
+                    <button type="button" className="p-2 w-8 h-14 my-6 mr-4  text-lg" onClick={(e) => handleIncrementQuantity(item.id)}>+</button>
                     
                     <img 
                       src={item.image} 
