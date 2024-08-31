@@ -3,8 +3,8 @@ import React from 'react';
 const HistoryCard = ({ data, index }) => {
 
     return (
-        <div className='flex flex-col w-full my-1 p-2 gap-1 md:gap-4'>
-            <ul className='border-b-2 hover:cursor-pointer group hover:shadow-xl transition-shadow hover:bg-slate-100 duration-500'>
+        <div className='flex flex-col w-full'>
+            <ul className='gap-1 md:gap-4 border-b-2 hover:cursor-pointer group hover:shadow-xl transition-shadow hover:bg-slate-100 duration-500'>
                 {data.orders.map((item) => (
                     <>
                     <li key={index}>
