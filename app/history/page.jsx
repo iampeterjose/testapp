@@ -45,8 +45,6 @@ const History = () => {
                     {allOrders.length > 0 ? (
                         <>
                         <h1 className='text-xl'>Order History</h1>
-                        {loading && <p>Loading....</p>}
-                        {error && <p>Loading....</p>}
                         {allOrders.map((orders, index) => (
                             <HistoryCard 
                             key={index} 
@@ -57,6 +55,8 @@ const History = () => {
                     ) : (
                         <p>No orders found.</p>
                     )}
+                    {loading && <p>Loading....</p>}
+                    {error && <p>Loading....</p>}
                 </div>
             </main>
         </div>
